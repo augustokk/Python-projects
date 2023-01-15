@@ -1,0 +1,84 @@
+# THAT PROGRAM WILL PRESENT TO THE USER THE SPECIFIC GHOST FOR HIS HOGWARTS HOUSE
+# THE USER WILL BE ABLE TO SELECT HIS HOGWARTS HOUSE TO CHECK THE GHOST
+# THERE IS NO RANDOM SELECTION FOR THE HOUSE
+
+def positive_number(user_input):
+    """
+    check if the number from user input was positive and int
+    """
+    while True:
+        try:
+            number = int(input(user_input))
+            if number > 0:
+                break
+            else:
+                print("Non-negative numbers please...")
+        except ValueError:
+            print("Must be numeric...")
+    return number
+
+
+def read_string_with_letters_only(user_input):
+    """
+    check if the letters from user input contains only letters
+    """
+    while True:
+        frase = input(user_input)
+        copia = frase.replace(" ", "")  # remove empty spaces
+        if len(frase)>0 and copia.isalpha():  # check if is all from alphabet, no symbols
+            return frase
+        else:
+            print('Please type letters only')
+
+
+def read_house():
+    """
+    Based on specific options, leave the user to select his hogwarts house
+    """
+    while True:
+        casa = positive_number(  '1: Slytherin \n'
+                                 '2: Hufflepuff\n'
+                                 '3: Ravenclaw\n'
+                                 '4: Gryffindor\n'
+                                 'Which House >>> ')
+        if 0 < casa < 5:
+            break
+        else:
+            print('Only numbers 1,2,3 or 4')
+    return casa
+
+
+def get_house_details(numero):
+    """
+    Based on specific parameters, provide specific ghost for that hogwarts house
+    """
+    if numero == 1:
+        house_name ='Slytherin'
+        house_ghost ='The Bloody Baron'
+    elif numero == 2:
+        house_name ='Hufflepuff'
+        house_ghost ='The Fat Friar'
+    elif numero == 3:
+        house_name ='Ravenclaw'
+        house_ghost ='The Grey Lady'
+    elif numero == 4:
+        house_name ='Gryffindor'
+        house_ghost ='Nearly Headless Nick'
+    return house_name, house_ghost
+
+
+def print_details(nome, casa, fantasma):
+    """
+    Print for the user the full information
+    """
+    print(f'{nome} belongs to {casa} which is haunted by {fantasma}')
+
+
+def main():
+    student = read_string_with_letters_only('Student Name: ')
+    house = read_house()
+    casa, fantasma = get_house_details(house)
+    print_details(student, casa, fantasma)
+
+
+main()
