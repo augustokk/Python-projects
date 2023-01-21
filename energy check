@@ -1,16 +1,58 @@
-try:
-    name = str(input('What is your name?'))
-    number=int(input('how many kwh you used this week'))
-    year = number * 52
-    year_cost = year * 0.24
-    print(f' Report for family: {name.upper()}')
-    print(f' Annual usage: {year} kwh')
-    print(f' Annual cost: €{year_cost:.2f}')
-    if year >5000:
-        print('Your usage is above the average for a family')
-        print(f' You should reduce your use in 10 % going from {year} to {year*0.9:.1f} kwh')
-        print(f'If you do it you will save: €{year_cost*0.1:.2f} per year')
-    else:
-        print(f' Your usage is in the average for a family with {year:.1f} kwh per year and cost of €{year_cost} per year  ')
-except ValueError:
-    print('You typed a wrong character, please try again')
+def positive_number(user_input):
+    """
+    check if the number from user input was positive and int
+    """
+    while True:
+        try:
+            number = int(input(user_input))
+            if number > 0:
+                break
+            else:
+                print("Non-negative numbers please...")
+        except ValueError:
+            print("Must be numeric...")
+    return number
+
+
+def read_string_with_letters_only(user_input):
+    """
+    check if the letters from user input contains only letters
+    """
+    while True:
+        frase = input(user_input)
+        copia = frase.replace(" ", "")  # remove empty spaces
+        if len(frase)>0 and copia.isalpha():  # check if is all from alphabet, no symbols
+            return frase
+        else:
+            print('Please type letters only')
+
+
+def check_energy(name, number):
+    """
+    check if the user has a energy consume above average and it will give an example how lower the consume will imply in the year cost
+    """
+    try:
+        kwh_cost = 0.24  # that value will change depending of the price your energy charges you by kwh
+        avg_year = 5000  # that value is just an example, need specific resources to determine an average of kwh consume
+        year = number * 52
+        year_cost = year * kwh_cost
+        print(f' Report for family: {name.upper()}')
+        print(f' Annual usage: {year} kwh')
+        print(f' Annual cost: €{year_cost:.2f}')
+        if year > avg_year:
+            print('Your usage is above the average for a family')
+            print(f' You should reduce your use in 10 % going from {year} to {year*0.9:.1f} kwh')
+            print(f'If you do it you will save: €{year_cost*0.1:.2f} per year')
+        else:
+            print(f' Your usage is in the average for a family with {year:.1f} kwh per year and cost of €{year_cost} per year')
+    except ValueError:
+        print('You typed a wrong character, please try again')
+
+
+def main():
+    name = read_string_with_letters_only ('What is your family name?')
+    number = positive_number('how many kwh you used this week')
+    check_energy(name, number)
+
+
+main()
