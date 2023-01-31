@@ -1,0 +1,77 @@
+# IN THAT PROGRAM YOU WILL BE ABLE TO POPULATE A DATABASE OF A WEEK BPM OF A PATIENT
+# BASED ON THAT VALUES YOU WILL BE ABLE TO SEE THE MAXIMUM AND MINIMUN BPM ON THAT WEEK
+# YOU WILL ALSO BE ABLE TO SEE THE DIFFERENCE BETWEEN THEM
+week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+
+def heading():
+    """This is a function to print a title formatted"""
+    print(15*'-')
+    print('BPM Processor')
+    print(15 * '-')
+
+
+def positive_number(user_input):
+    """This is a function that allows you to check if the value that the user wrote is positive, int """
+    while True:
+        try:
+            number = int(input(user_input))
+            if number > 0:
+                break
+            else:
+                print("Non-negative numbers please...")
+        except ValueError:
+            print("Must be numeric...")
+    return number
+
+
+def read_string_with_letters_only(prompt):
+    """this is a function to check if the user is writing a string and if they are just letters"""
+    while True:
+        phrase = input(prompt)
+        if len(phrase) > 0:  # check if it has at least one character and if they are just alphabets
+            return phrase
+        else:
+            print('Please type letters only')
+
+
+def read_patient_details():
+    """that function will collect patient details (patient number and age)"""
+    name = read_string_with_letters_only('Patient number >>>')
+    age = positive_number('Age >>> ')
+    return name, age
+
+
+def read_bpm():
+    """that function will collect patient bpm data and store it in a list, 
+    each day of a week corresponds to one data to enter"""
+    bpm = []
+    for start in range(len(week)):
+        data = positive_number(f'BPM for {week[start]} >>>')
+        bpm.append(data)
+    return bpm
+
+
+def analyse(bpm, patient_number, age):
+    """that function will print the collected data, processing two lists,
+     will also determine the highest and lowest value in that list
+     to finish it will determine the difference between this two"""
+    print(f'Patient number:  {patient_number} ({age} years)')
+    print(25*'=')
+    for start in range(len(week)):
+        print(f'{week[start]:12}: {bpm[start]}')
+    maximum = max(bpm)
+    minimum = min(bpm)
+    difference = maximum - minimum
+    print(f'The difference between the lowest and highest BPM  was {difference}')
+    
+
+def main():
+    heading()
+    patient_number, age = read_patient_details()
+    bpm = read_bpm()
+    analyse(bpm, patient_number, age)
+    
+
+main()
+
