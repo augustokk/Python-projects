@@ -1,0 +1,56 @@
+# SIMPLE IDEA OF A INTERATIVE MENU WHERE THE USER CAN CHOOSE AN OPTION
+# BASED ON THAT OPTION THE USER WILL RECEIVE A SPECIFIC RESULT
+
+
+# global constants
+COFFEE = 2.20
+TEA = 1.70
+MILK = 1.65
+
+
+def get_choice():
+    """function to get the user's drink choice """
+    menu = "Would you like " + "\n\t1: Coffee" \
+                               "\n\t2: Tea" \
+                               "\n\t3: Milk" \
+                               "\n\t4: Quit" \
+                               "\n==> "
+    while True:
+        try:
+            number = int(input(menu))
+            if 1 <= number <= 4:
+                break
+            else:
+                print("Values 1, 2, 3 or 4 please...")
+        except ValueError:
+            print("Values 1, 2, 3 or 4 please...")
+    return number
+
+
+def process_choice(choice):
+    """Based on specific input of user will allocate specific cost output"""
+    if choice == 1:
+        cost = COFFEE
+    elif choice == 2:
+        cost = TEA
+    elif choice == 3:
+        cost = MILK
+    return cost
+
+
+def print_choice(c):
+    """Will print the value to the user on the screen """
+    print(f"That will be €{c:.2f}")
+
+
+def main():
+    while True:
+        users_choice = get_choice()
+        # end the program if that is the user choice
+        if users_choice == 4:
+            break
+        cost_of_beverage = process_choice(users_choice)
+        print_choice(cost_of_beverage)
+
+
+main()
