@@ -1,0 +1,23 @@
+try:
+    name = str(input('What is your full name? '))
+    mass = float(input('What is your mass in Kg? '))
+    earth = mass * 9.8
+    moon = mass * 1.6
+    jupiter = mass * 24.5
+    option = int(input(' Choose your option to see your weight: \n'
+                   '1- the moon \n'
+                   '2- Earth \n'
+                   '3- Jupiter'))
+    if option == 1:
+        print(f'{name.upper()} ({mass:.1f} kg)')
+        print(f'Earth: {earth:.1f} Newtons')
+    elif option == 2:
+        print(f'{name.upper()} ({mass:.1f} kg)')
+        print(f'Moon: {moon:.1f} Newtons')
+    elif option == 3:
+        print(f'{name.upper()} ({mass:.1f} kg)')
+        print(f'Jupiter: {jupiter:.1f} Newtons')
+    else:
+        print('You choose a wrong option, try again')
+except ValueError:
+    print('You typed a wrong character')
