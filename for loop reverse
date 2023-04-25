@@ -1,0 +1,13 @@
+# to import a library you need to call import as a key word and the name of python library
+import emoji
+
+# use of for loop in "reverse"
+# range (start, end, steps)
+# in that scenario we start from 20 and countdown to 0 jumping 2 by 2
+for i in range(20, 0, -2):
+    # the end in that sentence will determine what will show after the number called by the loop
+    print(i, end="...")
+print()
+
+# using the library to print an emoji
+print(emoji.emojize(":grinning_face_with_big_eyes:"))
