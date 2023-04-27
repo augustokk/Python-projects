@@ -1,0 +1,19 @@
+# ask the user to provide a message
+str = input('please type a word')
+
+# check how many characters that user's message have
+num = len(str)
+
+i=0
+letter = 0
+# while loop that will start from 0 and it will run until the number of characters provided by user
+while i < num:
+    # that will check if the character is a letter
+    if str[i] .isalpha():
+        # that will add 1 for each time the while loop find a letter
+        letter +=1
+    # that condition will be imposed to avoid an infinity loop
+    i+=1
+
+# print the final message with specific number of letters in the phrase
+print ('there are', letter ,'letters in the phrase')
