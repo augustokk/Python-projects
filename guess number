@@ -1,0 +1,36 @@
+# import specific library to use the random function
+import random
+
+# set a constant to be the highest value
+highest = 10
+
+# define a random integer number based on (min and max )option 
+answer = random.randint(1, highest)
+
+# print specific outputs to help the user to use the system
+print(f'Please guess number between 1 and {highest}')
+print('To quit type 0')
+
+# define the while loop
+# create a conditions for break the while loop
+guess = 0
+while guess != answer:
+    guess = int(input())
+    # check if the conditions are met
+    
+    # condition to quit the game (that will finish the game)
+    if guess == 0:
+        print('You quit')
+        break
+        
+    # correct answer (that will finish the game)
+    if guess == answer:
+        print('well done')
+        break
+
+    # the user's number is not correct (that will keep the game going)
+    else:
+        if guess > answer:
+            print('Please guess lower')
+        else:
+            print('Please guess higher')
